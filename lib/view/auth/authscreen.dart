@@ -11,11 +11,13 @@ class authscreen extends StatefulWidget {
 
 class _authscreenState extends State<authscreen> {
   bool inLogin = false;
+  String currentCountryCode = '+234';
+  TextEditingController mobileController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final Width = MediaQuery.of(context).size.width;
-    String currentCountryCode = '+234';
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -23,7 +25,7 @@ class _authscreenState extends State<authscreen> {
           image: AssetImage(
             "asset/amazon_prev_ui.png",
           ),
-          height: height * 0.04,
+          height: height * 0.08,
         ),
         centerTitle: true,
         elevation: 1,
@@ -158,6 +160,7 @@ class _authscreenState extends State<authscreen> {
                       0,
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         InkWell(
                           onTap: () {
@@ -182,11 +185,106 @@ class _authscreenState extends State<authscreen> {
                               style: TextStyle(fontSize: 19),
                             ),
                           ),
-                        )
+                        ),
+                        SizedBox(
+                            height: height * 0.06,
+                            width: Width * 0.64,
+                            child: TextField(
+                              cursorColor: Colors.orange,
+                              controller: mobileController,
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                hintText: 'Mobile number',
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                  borderSide: BorderSide(color: Colors.grey),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                  borderSide: BorderSide(color: Colors.orange),
+                                ),
+                                disabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                  borderSide: BorderSide(color: Colors.grey),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                  borderSide: BorderSide(color: Colors.grey),
+                                ),
+                              ),
+                            ))
                       ],
+                    ),
+                    Commonfunctin.blankSpace(height * 0.03, 0),
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: Text(
+                        "Continue",
+                        style: TextStyle(color: Colors.black, fontSize: 17),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                          minimumSize: Size(Width * 0.88, height * 0.06),
+                          backgroundColor: Colors.amber),
+                    ),
+                    Commonfunctin.blankSpace(height * 0.02, 0),
+                    RichText(
+                      text: TextSpan(children: [
+                        TextSpan(
+                            text: 'By continuing you agree to Amazon\'s ',
+                            style:
+                                TextStyle(color: Colors.black, fontSize: 11)),
+                        TextSpan(
+                            text: 'Condition of use ',
+                            style: TextStyle(color: Colors.blue, fontSize: 11)),
+                        TextSpan(
+                            text: ' and \'s ', style: TextStyle(fontSize: 11)),
+                        TextSpan(
+                            text: 'Privacy Notice',
+                            style: TextStyle(color: Colors.blue, fontSize: 11))
+                      ]),
                     )
                   ],
                 ),
+              ),
+              Commonfunctin.blankSpace(height * 0.05, 0),
+              Column(
+                children: [
+                  Container(
+                    height: 2,
+                    width: Width,
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            colors: [Colors.white, Colors.grey, Colors.white])),
+                  ),
+                  Commonfunctin.blankSpace(height * 0.03, 0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        "Condition of use",
+                        style: TextStyle(color: Colors.blue),
+                      ),
+                      Text(
+                        "Privacy Notice ",
+                        style: TextStyle(color: Colors.blue),
+                      ),
+                      Text(
+                        "Help",
+                        style: TextStyle(color: Colors.blue),
+                      )
+                    ],
+                  ),
+                  Commonfunctin.blankSpace(height * 0.03, 0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "1996-2023, Amazon.com inc or it's affiliates",
+                        style: TextStyle(color: Colors.black),
+                      )
+                    ],
+                  )
+                ],
               )
             ],
           ),
